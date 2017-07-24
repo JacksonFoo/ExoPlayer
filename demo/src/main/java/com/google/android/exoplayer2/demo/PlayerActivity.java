@@ -234,8 +234,7 @@ public class PlayerActivity extends Activity implements OnClickListener, ExoPlay
     Intent intent = getIntent();
     boolean needNewPlayer = player == null;
     if (needNewPlayer) {
-      TrackSelection.Factory adaptiveTrackSelectionFactory =
-          new AdaptiveTrackSelection.Factory(BANDWIDTH_METER);
+      TrackSelection.Factory adaptiveTrackSelectionFactory = new AdaptiveTrackSelection.Factory(BANDWIDTH_METER);
       trackSelector = new DefaultTrackSelector(adaptiveTrackSelectionFactory);
       trackSelectionHelper = new TrackSelectionHelper(trackSelector, adaptiveTrackSelectionFactory);
       lastSeenTrackGroupArray = null;
@@ -266,7 +265,7 @@ public class PlayerActivity extends Activity implements OnClickListener, ExoPlay
               : DefaultRenderersFactory.EXTENSION_RENDERER_MODE_ON)
               : DefaultRenderersFactory.EXTENSION_RENDERER_MODE_OFF;
       DefaultRenderersFactory renderersFactory = new DefaultRenderersFactory(this,
-          drmSessionManager, extensionRendererMode);
+          drmSessionManager, DefaultRenderersFactory.EXTENSION_RENDERER_MODE_PREFER);
 
       player = ExoPlayerFactory.newSimpleInstance(renderersFactory, trackSelector);
       player.addListener(this);

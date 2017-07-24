@@ -16,6 +16,8 @@
 package com.google.android.exoplayer2.trackselection;
 
 import android.os.SystemClock;
+import android.util.Log;
+
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.Format;
 import com.google.android.exoplayer2.source.TrackGroup;
@@ -29,11 +31,11 @@ import java.util.List;
  */
 public class AdaptiveTrackSelection extends BaseTrackSelection {
 
+  private static final String TAG = "AdaptiveTrackSelection";
   /**
    * Factory for {@link AdaptiveTrackSelection} instances.
    */
   public static final class Factory implements TrackSelection.Factory {
-
     private final BandwidthMeter bandwidthMeter;
     private final int maxInitialBitrate;
     private final int minDurationForQualityIncreaseMs;
@@ -241,6 +243,7 @@ public class AdaptiveTrackSelection extends BaseTrackSelection {
     for (int i = 0; i < length; i++) {
       if (nowMs == Long.MIN_VALUE || !isBlacklisted(i, nowMs)) {
         Format format = getFormat(i);
+        Log.d(TAG, "current bitrate" + effectiveBitrate + "|" + "current index" + i);
         if (format.bitrate <= effectiveBitrate) {
           return i;
         } else {

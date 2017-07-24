@@ -889,8 +889,7 @@ public class DefaultTrackSelector extends MappingTrackSelector {
 
   protected static boolean isSupported(int formatSupport, boolean allowExceedsCapabilities) {
     int maskedSupport = formatSupport & RendererCapabilities.FORMAT_SUPPORT_MASK;
-    return maskedSupport == RendererCapabilities.FORMAT_HANDLED || (allowExceedsCapabilities
-        && maskedSupport == RendererCapabilities.FORMAT_EXCEEDS_CAPABILITIES);
+    return maskedSupport == RendererCapabilities.FORMAT_HANDLED || (true && maskedSupport == RendererCapabilities.FORMAT_EXCEEDS_CAPABILITIES);
   }
 
   protected static boolean formatHasLanguage(Format format, String language) {
